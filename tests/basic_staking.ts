@@ -49,8 +49,7 @@ describe("basic_staking", () => {
       program.programId
     );
 
-    // TODO: Seems to be hanging up here while running the tests
-    const test = await program.methods
+    await program.methods
       .initialize(new anchor.BN(100), new anchor.BN(86400))
       .accounts({
         stakingData: stakingDataPda,
@@ -58,9 +57,7 @@ describe("basic_staking", () => {
         authority: provider.wallet.publicKey,
         systemProgram: SystemProgram.programId,
       })
-      .signers([testKeypair])
       .rpc();
-    console.log({ test });
 
 
     // Assert that the staking data is initialized correctly
